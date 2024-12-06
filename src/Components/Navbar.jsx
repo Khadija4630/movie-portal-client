@@ -1,82 +1,100 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../assets/logo.png";
 
 const Navbar = ({ user, setUser }) => {
-
-    const navigate = useNavigate();
-    const handleLogout = () => {
-        setUser(null); 
-        navigate("/"); 
-      };
-    const Links =<>
-            <Link to="/">Home</Link>
-            <Link to="/allMovies">All Movies</Link>
-            <Link to="/addMovies">Add Movie</Link>
-            <Link to="/favouriteMovies"> My Favourites</Link>
-            <Link to="/myFavourites">Movies </Link>
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+  };
+  const Links = (
+    <>
+      <Link to="/" className="mx-4 hover:text-red-500">
+        Home
+      </Link>
+      <Link to="/allMovies" className="mx-4 hover:text-red-500">
+        All Movies
+      </Link>
+      <Link to="/addMovies" className="mx-4 hover:text-red-500">
+        Add Movie
+      </Link>
+      <Link to="/favouriteMovies" className="mx-4 hover:text-red-500">
+        {" "}
+        My Favourites
+      </Link>
+      <Link to="/myFavourites" className="mx-4 hover:text-red-500">
+        Movies{" "}
+      </Link>
     </>
+  );
 
-
-    return (
-            <div>
-                <a href="/"> <img src="../assets/logo.png" alt="" /></a>
-                <div className="navbar bg-base-100">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M4 6h16M4 12h8m-8 6h16" />
-                        </svg>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        {Links}
-                    </ul>
-                </div>
-                <a className="btn btn-ghost text-xl"></a>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {Links}
-                </ul>
-            </div>
-            <div className="navbar-end">
-        <ul>
-            {!user ? (
-          <>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Register</Link></li>
-          </>
-        ) : (
-          <>
-            <li>
-              <img
-                src={user.photoURL}
-                alt={user.displayName}
-                title={user.displayName}
-                style={{ width: "30px", borderRadius: "50%" }}
+  return (
+    <div className="navbar bg-base-100 px-6 py-4">
+      <div className="navbar-start  flex items-center">
+        <a href="/" className="flex items-center">
+          <img className="w-6" src={Logo} alt="Logo" />
+          <span className="text-xl font-bold ml-2">Movie Portal</span>
+        </a>
+      </div>
+      <div className="navbar-start md:hidden">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
               />
-            </li>
-            <li><button onClick={handleLogout}>Logout</button></li>
-          </>
-        )}
-      </ul>
-                </div>
-            </div>
-            
-
+            </svg>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 w-52 p-2 shadow bg-base-100 rounded-box"
+          >
+            {Links}
+          </ul>
         </div>
-    );
+      </div>
+      <div className="navbar-center hidden md:flex">
+        <ul className="menu menu-horizontal px-1">{Links}</ul>
+      </div>
+      <div className="navbar-end">
+        <ul>
+          {!user ? (
+            <div className="flex space-x-4 p-2">
+              <button className="bg-red-400 rounded-xl px-2">
+                <Link to="/login">Login</Link>
+              </button>
+              <button className="bg-red-400 rounded-xl px-2">
+                <Link to="/register">Register</Link>
+              </button>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center space-x-4">
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName}
+                  className="w-10 h-10 rounded-full"
+                  title={user.displayName}
+                />
+              </div>
+             
+                <button onClick={handleLogout} className="btn bg-red-400 text-white rounded-lg px-4 py-2">Logout</button>
+            </>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;
