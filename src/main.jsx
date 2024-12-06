@@ -7,24 +7,42 @@ import {
 import './index.css'
 import Login from './Components/Login.jsx';
 import AddMovies from './Components/AddMovies.jsx';
-import Layout from './Components/Layout.jsx';
 import HomePage from './Components/HomePage.jsx';
 import Register from './Components/Register.jsx';
 import PrivateRoutes from './Components/Routes/PrivateRoutes.jsx';
+import AllMovies from './Components/AllMovies.jsx';
+import FavouriteMovies from './Components/FavouriteMovies.jsx';
+import FeaturedMovies from './Components/FeaturedMovies.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout></Layout>,
+    element: <HomePage></HomePage>,
     children: [
+      // {
+      //   path: '/',
+      //   element: <HomePage></HomePage>,
+      //   loader: () => fetch('http://localhost:5000/movies')
+      // },
       {
-        path: '/',
-        element: <HomePage></HomePage>,
-        loader: () => fetch('http://localhost:5000/movies')
+        path: '/allMovies',
+        element:<AllMovies></AllMovies>
       },
       {
         path: '/addMovies',
+        element:<AddMovies></AddMovies>
+      },
+      {
+        path: '/favouriteMovies',
+        element:<FavouriteMovies></FavouriteMovies>
+      },
+      {
+        path: '/featuredMovies',
+        element:<FeaturedMovies></FeaturedMovies>
+      },
+      {
+        path: '/myFavourite',
         element:<AddMovies></AddMovies>
       },
       // {

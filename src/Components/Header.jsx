@@ -19,7 +19,6 @@ const Header = () => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        // arrows: false, 
         arrows: true,
       };
 
@@ -52,14 +51,14 @@ const Header = () => {
         
       ];
     return (
-        <div className='banner mx-auto max-w-6xl'>
+        <div className='banner mx-auto max-w-6xl rounded-xl text-center items-center  relative z-10'>
             <Slider {...settings}>
                {slides.map((slide, index) => (
           <div key={index} className="relative">
             <img
               src={slide.image}
               alt={slide.title}
-              className="w-full h-64 object-cover md:h-96"
+              className="h-64 object-cover md:h-96 w-[99%] mx-auto"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white p-4">
               <h2 className="text-2xl md:text-4xl font-bold">{slide.title}</h2>
