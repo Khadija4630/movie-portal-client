@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "./Routes/PrivateRoutes";
 import Logo from "../assets/logo.png";
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleLogout = () => {
-    setUser(null);
-    navigate("/");
+
+  const handleLogout = async() => {
+    try{
+      await signOutUser();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
   const Links = (
     <>
@@ -49,7 +56,7 @@ const Navbar = ({ user, setUser }) => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 w-52 p-2 shadow bg-base-200 rounded-box z-50"
+            className="menu menu-sm dropdown-content mt-3 w-52 p-2 shadow bg-base-100 rounded-box z-50"
           >
             {Links}
             
@@ -67,34 +74,35 @@ const Navbar = ({ user, setUser }) => {
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1">{Links}</ul>
       </div>
-      <div className="navbar-end">
-        <ul>
-          {!user ? (
-            <div className="flex space-x-4 p-2">
-              <button className="bg-red-400 rounded-xl px-2">
-                <Link to="/login">Login</Link>
-              </button>
-              <button className="bg-red-400 rounded-xl px-2">
-                <Link to="/register">Register</Link>
-              </button>
-            </div>
-          ) : (
+      <div className="navbar-end bg-base-2
+      00">
+          {user ? (
             <>
-              <div className="flex items-center space-x-4">
-                <img
-                  src={user.photoURL}
-                  alt={user.displayName}
-                  className="w-10 h-10 rounded-full"
-                  title={user.displayName}
-                />
-              </div>
-             
-                <button onClick={handleLogout} className="btn bg-red-400 text-white rounded-lg px-4 py-2">Logout</button>
-            </>
-          )}
-        </ul>
-      </div>
-    </div>
+            <div className="flex items-center space-x-4 bg-base-200">
+              <img 
+                src={user.photoURL}
+                
+                className="w-10 rounded-full text-black"
+                
+              />
+              <span className="hidden md:inline text-black font-semibold px-2">{user.displayName || "User"}</span>
+            </div>
+           
+              <button onClick={handleLogout} className="btn bg-red-400 text-white rounded-lg px-4 py-2">Logout</button>
+          </>
+          ) : (
+           
+            <div className="flex space-x-4 p-2">
+            <button className="bg-red-400 rounded-xl px-2">
+              <Link to="/login"  onClick={() => console.log('Login Button Clicked')}>Login</Link>
+            </button>
+            <button className="bg-red-400 rounded-xl px-2">
+              <Link to="/register" onClick={() => console.log('Register Button Clicked')}>Register</Link>
+            </button>
+          </div>
+)}
+</div>
+</div>
   );
 };
 

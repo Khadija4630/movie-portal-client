@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   createBrowserRouter,
@@ -13,17 +13,22 @@ import PrivateRoutes from './Components/Routes/PrivateRoutes.jsx';
 import AllMovies from './Components/AllMovies.jsx';
 import FavouriteMovies from './Components/FavouriteMovies.jsx';
 import FeaturedMovies from './Components/FeaturedMovies.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
+// const [user,setUser] = useState("");
 const router = createBrowserRouter([
+
+  
   {
     path: "/",
-    element: <HomePage></HomePage>,
+    element: <HomePage ></HomePage>,
     children: [
       // {
       //   path: '/',
       //   element: <HomePage></HomePage>,
-      //   loader: () => fetch('http://localhost:5000/movies')
+      //   loader: () => fetch('https://movie-portal-server-10.vercel.app/movies')
       // },
       {
         path: '/allMovies',
@@ -48,20 +53,20 @@ const router = createBrowserRouter([
       // {
       //   path: 'updateCoffee/:id',
       //   element: <UpdateCoffee></UpdateCoffee>,
-      //   loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
+      //   loader: ({ params }) => fetch(`https://movie-portal-server-10.vercel.app/coffee/${params.id}`)
       // },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: 'login',
+        element: <Login ></Login>
       },
       {
-        path: '/register',
+        path: 'register',
         element:<Register></Register>
       },
       // {
       //   path: 'users',
       //   element: <Users></Users>,
-      //   loader: () => fetch('http://localhost:5000/users')
+      //   loader: () => fetch('https://movie-portal-server-10.vercel.app/users')
       // }
     ]
   },
@@ -70,7 +75,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <PrivateRoutes>
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
     </PrivateRoutes>
+    <ToastContainer />
   </StrictMode>,
-)
+);
+ 

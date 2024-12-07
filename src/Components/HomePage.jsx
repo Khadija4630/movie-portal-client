@@ -1,16 +1,19 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Header from './Header';
+import FeaturedMovies from './FeaturedMovies';
+import LatestMovies from './LatestMovies';
 
 const HomePage = () => {
-    const [user, setUser] = useState(null);
+
     return (
         <div className='max-w-6xl mx-auto'> 
-          <Navbar user={user} setUser={setUser} ></Navbar>
-            
+          <Navbar ></Navbar>
             <Header></Header>
+            <FeaturedMovies></FeaturedMovies>
+            <LatestMovies></LatestMovies>
             <Outlet></Outlet>
         </div>
     );
