@@ -65,7 +65,8 @@ const AddMovie = () => {
       const response = await fetch("http://localhost:5000/movies", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(movieData),
       });

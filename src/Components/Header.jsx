@@ -8,8 +8,23 @@ import Slider_3 from '../assets/Slider-4.jpg';
 import Slider_4 from '../assets/Slider-8.jpg';
 import Slider_5 from '../assets/Slider-10.jpeg';
 
+import React, { useState, useEffect } from 'react';
 
-const Header = () => {
+
+const Header = ({ text, delay }) => {
+  const [currentText, setCurrentText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setCurrentText(prevText => prevText + text[currentIndex]);
+        setCurrentIndex(prevIndex => prevIndex + 1);
+      }, delay);
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, delay, text]);
 
     const settings = {
         dots: true,

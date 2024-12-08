@@ -6,6 +6,8 @@ import Logo from "../assets/logo.png";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+ 
+
 
   const handleLogout = async() => {
     try{

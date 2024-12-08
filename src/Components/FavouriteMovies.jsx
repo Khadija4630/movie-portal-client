@@ -4,7 +4,16 @@ const FavoriteMovies = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/favoriteMovies`)
+    const token = localStorage.getItem("token");
+    fetch(`http://localhost:5000/favoriteMovies`, 
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "Authorization": `Bearer ${token}`
+                }
+        }
+    )
       .then((res) => res.json())
       .then((data) => setFavorites(data))
       .catch((err) => console.error("Error fetching favorite movies:", err));

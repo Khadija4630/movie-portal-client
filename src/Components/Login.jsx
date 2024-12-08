@@ -29,16 +29,40 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-       await signInWithRedirect (auth, googleProvider);
-      toast.success("Google Login Is Successful");
-      console.log("User after Login:", user);
-      navigate("/");
-    } catch (error) {
-      toast.error(error.message  || "Google Login Failed");
+  const handleGoogleLogin = async (e) => {
+  //   try {
+  //      await signInWithRedirect (auth, googleProvider);
+  //     toast.success("Google Login Is Successful");
+  //     console.log("User after Login:", user);
+  //     navigate("/");
+  //   } catch (error) {
+  //     toast.error(error.message  || "Google Login Failed");
+  //   }
+  // };
+  e.preventDefault();
+  try {
+    const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Login failed");
     }
-  };
+
+    const { token, user } = await response.json();
+    localStorage.setItem("token", token);
+    setUser(user);
+    toast.success("Login Is Successful");
+    navigate("/addMovies");
+} catch (error) {
+    toast.error(error.message || "Invalid Email or Password");
+}
+};
 
 useEffect(() => {
     getRedirectResult(auth)
