@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth, googleProvider  } from "../Firebase/Firebase.init";
-import { getRedirectResult, signInWithEmailAndPassword,signInWithRedirect } from "firebase/auth";
+import { getRedirectResult,onAuthStateChanged, signInWithEmailAndPassword,signInWithRedirect } from "firebase/auth";
 import { toast } from "react-toastify";
 import { AuthContext } from "./Routes/PrivateRoutes";
 
@@ -9,80 +9,56 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const { setUser } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      console.log("Email login user:", user); 
       setUser({
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
       });
       toast.success("Login Is Successful");
-      navigate("/");
+      navigate(location.state?.from || "/addMovies");
     } catch (error) {
       toast.error("Invalid Email or Password");
     }
   };
 
+
   const handleGoogleLogin = async (e) => {
-  //   try {
-  //      await signInWithRedirect (auth, googleProvider);
-  //     toast.success("Google Login Is Successful");
-  //     console.log("User after Login:", user);
-  //     navigate("/");
-  //   } catch (error) {
-  //     toast.error(error.message  || "Google Login Failed");
-  //   }
-  // };
-  e.preventDefault();
-  try {
-    const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    try {
+       await signInWithRedirect (auth, googleProvider);
+      toast.success("Google Login Is Successful");
+      console.log("User after Login:", user);
+      navigate("/");
+    } catch (error) {
+      toast.error(error.message  || "Google Login Failed");
+    }
+  };
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        const FirebaseUser = currentUser;
+        setUser({
+          email: FirebaseUser.email,
+          displayName: FirebaseUser.displayName,
+          photoURL: FirebaseUser.photoURL,
+        });
+        toast.success(`Welcome, ${FirebaseUser.displayName || "User"}!`);
+        const intendedPath = location.state?.from || "/addMovies"; // Determine intended path
+        navigate(intendedPath); // Navigate to the desired route
+      }
     });
 
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Login failed");
-    }
+    return () => unsubscribe(); // Cleanup listener on component unmount
+  }, [navigate, setUser]);
 
-    const { token, user } = await response.json();
-    localStorage.setItem("token", token);
-    setUser(user);
-    toast.success("Login Is Successful");
-    navigate("/addMovies");
-} catch (error) {
-    toast.error(error.message || "Invalid Email or Password");
-}
-};
-
-useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result?.user) {
-          const FirebaseUser = result.user;
-          console.log("Google login user:", FirebaseUser); 
-          setUser({
-            email: FirebaseUser.email,
-            displayName: FirebaseUser.displayName,
-            photoURL: FirebaseUser.photoURL,
-          });
-          toast.success(`Welcome, ${FirebaseUser.displayName || "User"}!`);
-          navigate("/"); 
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message || "Google Login Failed");
-      });
-  }, [navigate,setUser]);
 
   return (
     <div className="flex justify-center items-center lg:mt-6 mt-3">

@@ -5,7 +5,7 @@ const FavoriteMovies = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:5000/favoriteMovies`, 
+    fetch(`http://localhost:5000/favouriteMovies`, 
         {
             method: "GET",
             headers: {

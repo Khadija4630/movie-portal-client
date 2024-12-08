@@ -30,7 +30,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage ></HomePage>,
-    loader: () => fetch('https://movie-portal-server-10.vercel.app'),
     children: [
       {
         path: '/allMovies',
@@ -38,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies/:id",
-        element:<MovieDetails />,
+        element:<PrivateRoute><MovieDetails />,</PrivateRoute>
       },
       {
         path: "/update-movie/:id",
@@ -54,7 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/favouriteMovies',
-        element:<PrivateRoute><FavoriteMovies></FavoriteMovies></PrivateRoute>
+        element:<PrivateRoute><FavouriteMovies></FavouriteMovies></PrivateRoute>
       },
       {
         path:'/aboutUs',
@@ -72,11 +71,6 @@ const router = createBrowserRouter([
         path: 'register',
         element:<Register></Register>
       },
-      // {
-      //   path: 'users',
-      //   element: <Users></Users>,
-      //   loader: () => fetch('https://movie-portal-server-10.vercel.app/users')
-      // }
     ]
     
   },
