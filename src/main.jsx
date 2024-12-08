@@ -61,7 +61,7 @@ const router = createBrowserRouter([
       {
         path: '/favouriteMovies',
         element:<FavouriteMovies></FavouriteMovies>
-        // element:<PrivateRoute><FavouriteMovies></FavouriteMovies></PrivateRoute>
+        
       },
       {
         path:'/aboutUs',
