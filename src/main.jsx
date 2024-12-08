@@ -1,4 +1,4 @@
-import { StrictMode, useState } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   createBrowserRouter,
@@ -20,8 +20,8 @@ import NotFound from './Components/NotFound.jsx';
 import UpdateMovie from './Components/UpdateMovie.jsx';
 import AboutUs from './Components/AboutUs.jsx';
 import TrendingMovies from './Components/TrendingMovies.jsx';
-import FavoriteMovies from './Components/FavouriteMovies.jsx';
 import PrivateRoute from './Components/PrivateRoute.jsx';
+import MyFavourite from './Components/MyFavourite.jsx';
 
 
 const router = createBrowserRouter([
@@ -32,20 +32,27 @@ const router = createBrowserRouter([
     element: <HomePage ></HomePage>,
     children: [
       {
+        path:'/movies',
+        element: <AllMovies></AllMovies>
+      },
+      {
         path: '/allMovies',
         element:<AllMovies></AllMovies>
       },
       {
         path: "/movies/:id",
-        element:<PrivateRoute><MovieDetails />,</PrivateRoute>
+        element:<MovieDetails />
+        // element:<PrivateRoute><MovieDetails></MovieDetails></PrivateRoute>
       },
       {
         path: "/update-movie/:id",
-        element:<PrivateRoute><UpdateMovie /></PrivateRoute>,
+        element: <UpdateMovie />
+        // element:<PrivateRoute><UpdateMovie /></PrivateRoute>,
       },
       {
         path: '/addMovies',
-        element:<PrivateRoute><AddMovies ></AddMovies></PrivateRoute>
+        element:<AddMovies></AddMovies>
+        // element:<PrivateRoute><AddMovies ></AddMovies></PrivateRoute>
       },
       {
         path: '/featured-movies',
@@ -78,6 +85,10 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
+  {
+    path: '/myFavourites',
+    element:<MyFavourite></MyFavourite>,
+  }
   
 ]);
 

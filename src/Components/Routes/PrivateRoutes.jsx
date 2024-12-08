@@ -25,15 +25,15 @@ const PrivateRoutes = ({ children }) => {
         return () => unsubscribe();
   }, []);
 
-    // const createUser = (email, password) => {
-    //     setLoading(true);
-    //     return createUserWithEmailAndPassword(auth, email, password);
-    // }
+    const createUser = (email, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
 
-    // const signInUser = (email, password) => {
-    //     setLoading(true);
-    //     return signInWithEmailAndPassword(auth, email, password);
-    // }
+    const signInUser = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
     
   const signOutUser = async () => {
     setLoading(true);
@@ -42,17 +42,17 @@ const PrivateRoutes = ({ children }) => {
     setLoading(false);
   };
 
-    // const userInfo = {
-    //     user,
-    //     loading,
-    //     createUser,
-    //     signInUser,
-    //     signOutUser,
-    //     setUser,
-    // }
+    const userInfo = {
+        user,
+        loading,
+        createUser,
+        signInUser,
+        signOutUser,
+        setUser,
+    }
 
     return (
-        <AuthContext.Provider value={{user,setUser,loading,signOutUser}}>
+        <AuthContext.Provider value={{userInfo,user,setUser,loading,signOutUser}}>
             {loading ? <div>Loading...</div> : children}
         </AuthContext.Provider>
     );
