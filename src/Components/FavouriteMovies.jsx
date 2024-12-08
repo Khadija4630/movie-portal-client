@@ -4,14 +4,14 @@ const FavoriteMovies = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/favorites?userEmail=user@example.com`)
+    fetch(`http://localhost:5000/favoriteMovies`)
       .then((res) => res.json())
       .then((data) => setFavorites(data))
       .catch((err) => console.error("Error fetching favorite movies:", err));
   }, []);
 
   const handleDeleteFavorite = (id) => {
-    fetch(`http://localhost:5000/favorites/${id}`, {
+    fetch(`http://localhost:5000/favoriteMovies/${id}`, {
       method: "DELETE",
     })
       .then(() => {

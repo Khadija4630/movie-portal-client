@@ -21,6 +21,7 @@ import UpdateMovie from './Components/UpdateMovie.jsx';
 import AboutUs from './Components/AboutUs.jsx';
 import TrendingMovies from './Components/TrendingMovies.jsx';
 import FavoriteMovies from './Components/FavouriteMovies.jsx';
+import PrivateRoute from './Components/PrivateRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -41,19 +42,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/update-movie/:id",
-        element: <UpdateMovie />,
+        element:<PrivateRoute><UpdateMovie /></PrivateRoute>,
       },
       {
         path: '/addMovies',
-        element:<AddMovies></AddMovies>
+        element:<PrivateRoute><AddMovies ></AddMovies></PrivateRoute>
       },
       {
         path: '/featured-movies',
         element:<FeaturedMovies></FeaturedMovies>
       },
       {
-        path: '/myFavourite',
-        element:<FavoriteMovies></FavoriteMovies>
+        path: '/favouriteMovies',
+        element:<PrivateRoute><FavoriteMovies></FavoriteMovies></PrivateRoute>
       },
       {
         path:'/aboutUs',
