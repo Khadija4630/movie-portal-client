@@ -18,6 +18,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import MovieDetails from './Components/MovieDetails.jsx';
 import NotFound from './Components/NotFound.jsx';
 import UpdateMovie from './Components/UpdateMovie.jsx';
+import AboutUs from './Components/AboutUs.jsx';
+import TrendingMovies from './Components/TrendingMovies.jsx';
+import FavoriteMovies from './Components/FavouriteMovies.jsx';
 
 
 const router = createBrowserRouter([
@@ -45,16 +48,20 @@ const router = createBrowserRouter([
         element:<AddMovies></AddMovies>
       },
       {
-        path: '/favouriteMovies',
-        element:<FavouriteMovies></FavouriteMovies>
-      },
-      {
         path: '/featured-movies',
         element:<FeaturedMovies></FeaturedMovies>
       },
       {
         path: '/myFavourite',
-        element:<AddMovies></AddMovies>
+        element:<FavoriteMovies></FavoriteMovies>
+      },
+      {
+        path:'/aboutUs',
+        element:<AboutUs></AboutUs>
+      },
+      {
+        path:'trendingMovies',
+        element:<TrendingMovies></TrendingMovies>
       },
       {
         path: 'login',

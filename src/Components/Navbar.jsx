@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Routes/PrivateRoutes";
 import Logo from "../assets/logo.png";
@@ -16,11 +16,15 @@ const Navbar = () => {
     }
   };
 
-  const [darkMode, setDarkMode] = useState(false);
-
-useEffect(() => {
-  document.body.className = darkMode ? "dark" : "light";
-}, [darkMode]);
+  const handleThemeToggle = (event) => {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  };
+  
 
 
   const Links = (
@@ -110,9 +114,8 @@ useEffect(() => {
           </div>
 )}
 </div>
-<button onClick={() => setDarkMode(!darkMode)}>
-    {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-  </button>
+<input type="checkbox" className="toggle" defaultChecked  onChange={handleThemeToggle} />
+
 </div>
   );
 };

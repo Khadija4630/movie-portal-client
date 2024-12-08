@@ -6,6 +6,7 @@ import Header from './Header';
 import FeaturedMovies from './FeaturedMovies';
 import LatestMovies from './LatestMovies';
 import Footer from './Footer';
+import TrendingMovies from './TrendingMovies';
 
 const HomePage = () => {
 
@@ -16,6 +17,7 @@ const HomePage = () => {
             <Outlet></Outlet>
             <FeaturedMovies></FeaturedMovies>
             <LatestMovies></LatestMovies>
+            <TrendingMovies></TrendingMovies>
             <Footer></Footer>
             
         </div>

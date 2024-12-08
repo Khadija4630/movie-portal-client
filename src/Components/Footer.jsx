@@ -8,13 +8,13 @@ const Footer = () => {
         <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
         <p>Contact us: contact@movieportal.com</p>
         <div className="flex justify-center space-x-4 mt-4">
-          <a href="https://facebook.com" target="_blank" rel="noreferrer">
+          <a href="https://www.facebook.com/profile.php?id=100070584511436" target="_blank" rel="noreferrer">
             Facebook
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer">
+          <a href="https://x.com/Khadija2120" target="_blank" rel="noreferrer">
             Twitter
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer">
+          <a href="https://www.instagram.com/k.hhadija/" target="_blank" rel="noreferrer">
             Instagram
           </a>
         </div>
