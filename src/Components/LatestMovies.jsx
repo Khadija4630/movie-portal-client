@@ -6,7 +6,14 @@ const LatestMovies = () => {
     useEffect(() => {
       const fetchLatestMovies = async () => {
         try {
-          const response = await fetch("https://movie-portal-server-10.vercel.app/movies?sort=releaseYear&limit=6");
+          const response = await fetch("https://movie-portal-server-10.vercel.app/movies",
+            {
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    },
+                    }
+          );
           const data = await response.json();
           setMovies(data);
         } catch (error) {

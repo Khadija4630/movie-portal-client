@@ -9,18 +9,25 @@ const FeaturedMovies = () => {
   useEffect(() => {
     const fetchFeaturedMovies = async () => {
       try {
-        const response = await fetch("https://movie-portal-server-10.vercel.app/featured-movies");
+        const response = await fetch("http://localhost:5000/featured-movies",
+            {
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    },
+            }
+        );
         const data = await response.json();
         setFeaturedMovies(data);
       } catch (error) {
         console.error("Error fetching featured movies:", error);
       }
     };
-    fetchFeaturedMovies();
-  }, []);
+        fetchFeaturedMovies();
+      }, []);
 
   const handleDetailsClick = (id) => {
-    navigate(`/movie-details/${id}`);
+    navigate(`/movies/${id}`);
   };
 
   return (
@@ -60,12 +67,6 @@ const FeaturedMovies = () => {
         <Link to="/allMovies" className="btn bg-red-500 hover:bg-red-600 text-white px-6 py-2">
           See All Movies
         </Link>
-        {/*  <button
-          className="btn btn-secondary"
-          onClick={() => (window.location.href = "/allMovies")}
-        >
-          See All Movies
-        </button> */}
       </div>
     </div>
   );

@@ -15,24 +15,30 @@ import FavouriteMovies from './Components/FavouriteMovies.jsx';
 import FeaturedMovies from './Components/FeaturedMovies.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MovieDetails from './Components/MovieDetails.jsx';
+import NotFound from './Components/NotFound.jsx';
+import UpdateMovie from './Components/UpdateMovie.jsx';
 
 
-// const [user,setUser] = useState("");
 const router = createBrowserRouter([
 
   
   {
     path: "/",
     element: <HomePage ></HomePage>,
+    loader: () => fetch('https://movie-portal-server-10.vercel.app'),
     children: [
-      // {
-      //   path: '/',
-      //   element: <HomePage></HomePage>,
-      //   loader: () => fetch('https://movie-portal-server-10.vercel.app/movies')
-      // },
       {
         path: '/allMovies',
         element:<AllMovies></AllMovies>
+      },
+      {
+        path: "/movies/:id",
+        element:<MovieDetails />,
+      },
+      {
+        path: "/update-movie/:id",
+        element: <UpdateMovie />,
       },
       {
         path: '/addMovies',
@@ -43,18 +49,13 @@ const router = createBrowserRouter([
         element:<FavouriteMovies></FavouriteMovies>
       },
       {
-        path: '/featuredMovies',
+        path: '/featured-movies',
         element:<FeaturedMovies></FeaturedMovies>
       },
       {
         path: '/myFavourite',
         element:<AddMovies></AddMovies>
       },
-      // {
-      //   path: 'updateCoffee/:id',
-      //   element: <UpdateCoffee></UpdateCoffee>,
-      //   loader: ({ params }) => fetch(`https://movie-portal-server-10.vercel.app/coffee/${params.id}`)
-      // },
       {
         path: 'login',
         element: <Login ></Login>
@@ -69,7 +70,13 @@ const router = createBrowserRouter([
       //   loader: () => fetch('https://movie-portal-server-10.vercel.app/users')
       // }
     ]
+    
   },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+  
 ]);
 
 createRoot(document.getElementById('root')).render(

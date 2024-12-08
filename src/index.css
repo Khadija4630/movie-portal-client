@@ -5,3 +5,21 @@
 
 @import "/node_modules/slick-carousel/slick/slick.css";
 @import "/node_modules/slick-carousel/slick/slick-theme.css";
+
+body.dark {
+    background-color:#000;
+    color: #fff;
+  }
+
+  /* body.dark button {
+    background:orange;
+  } */
+  /* body.dark :hover{
+    color: ;
+  } */
+
+  body.light {
+    background-color: #fff;
+    color: #000;
+  }
+  

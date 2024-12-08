@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Routes/PrivateRoutes";
 import Logo from "../assets/logo.png";
@@ -15,6 +15,14 @@ const Navbar = () => {
       console.error("Logout failed:", error);
     }
   };
+
+  const [darkMode, setDarkMode] = useState(false);
+
+useEffect(() => {
+  document.body.className = darkMode ? "dark" : "light";
+}, [darkMode]);
+
+
   const Links = (
     <>
       <Link to="/" className="block text-center text-lg lg:mx-4 mx-2  hover:text-red-500">
@@ -35,7 +43,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar">
          <div className="navbar-start md:hidden flex md:items-center ">
         <div className="dropdown">
           <label tabIndex={0} role="button" className="btn btn-ghost">
@@ -102,6 +110,9 @@ const Navbar = () => {
           </div>
 )}
 </div>
+<button onClick={() => setDarkMode(!darkMode)}>
+    {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+  </button>
 </div>
   );
 };
