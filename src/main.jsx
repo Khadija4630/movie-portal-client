@@ -60,7 +60,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/favouriteMovies',
-        element:<PrivateRoute><FavouriteMovies></FavouriteMovies></PrivateRoute>
+        element:<FavouriteMovies></FavouriteMovies>
+        // element:<PrivateRoute><FavouriteMovies></FavouriteMovies></PrivateRoute>
       },
       {
         path:'/aboutUs',

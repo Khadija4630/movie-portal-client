@@ -37,7 +37,3 @@ Easy-to-navigate user interface with clean and modern design.
 - Authentication: Firebase Authentication
 - Hosting: Firebase (Frontend), Vercel (Backend)
 
-# 📸 Screenshots
-- Home Page: [Add a screenshot link here]
-- Movie Details: [Add a screenshot link here]
-- Favorites Page: [Add a screenshot link here]

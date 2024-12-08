@@ -26,7 +26,7 @@ const MovieDetails = () => {
   };
 
   const handleAddToFavorites = () => {
-    fetch("http://localhost:5000/favorites", {
+    fetch("http://localhost:5000/favouriteMovies", {
       method: "POST",
       headers: {
         "content-type": "application/json",
