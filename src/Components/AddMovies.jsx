@@ -62,7 +62,7 @@ const AddMovie = () => {
     const movieData = { ...formData, email };
 
     try {
-      const response = await fetch("http://localhost:5000/movies", {
+      const response = await fetch("https://movie-portal-server-10.vercel.app/movies", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -9,7 +9,7 @@ const FeaturedMovies = () => {
   useEffect(() => {
     const fetchFeaturedMovies = async () => {
       try {
-        const response = await fetch("http://localhost:5000/featured-movies",
+        const response = await fetch("https://movie-portal-server-10.vercel.app/featured-movies",
             {
                 method: "GET",
                 headers: {

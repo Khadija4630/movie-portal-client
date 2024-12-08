@@ -8,14 +8,14 @@ const MovieDetails = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/movies/${id}`)
+    fetch(`https://movie-portal-server-10.vercel.app/movies/${id}`)
       .then((response) => response.json())
       .then((data) => setMovie(data))
       .catch((error) => console.error("Error fetching movie details:", error));
   }, [id]);
 
   const handleDelete = () => {
-    fetch(`http://localhost:5000/movies/${id}`, {
+    fetch(`https://movie-portal-server-10.vercel.app/movies/${id}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -26,7 +26,7 @@ const MovieDetails = () => {
   };
 
   const handleAddToFavorites = () => {
-    fetch("http://localhost:5000/favouriteMovies", {
+    fetch("https://movie-portal-server-10.vercel.app/favouriteMovies", {
       method: "POST",
       headers: {
         "content-type": "application/json",

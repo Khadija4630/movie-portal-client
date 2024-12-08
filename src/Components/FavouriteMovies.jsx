@@ -5,7 +5,7 @@ const FavoriteMovies = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:5000/favouriteMovies`, 
+    fetch(`https://movie-portal-server-10.vercel.app/favouriteMovies`, 
         {
             method: "GET",
             headers: {
@@ -20,7 +20,7 @@ const FavoriteMovies = () => {
   }, []);
 
   const handleDeleteFavorite = (id) => {
-    fetch(`http://localhost:5000/favoriteMovies/${id}`, {
+    fetch(`https://movie-portal-server-10.vercel.app/favoriteMovies/${id}`, {
       method: "DELETE",
     })
       .then(() => {

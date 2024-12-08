@@ -9,7 +9,7 @@ const AllMovies = () => {
 
   const searchMovies = async (email) => {
     try {
-      const response = await fetch(`http://localhost:5000/search-movies?email=${email}`);
+      const response = await fetch(`https://movie-portal-server-10.vercel.app/search-movies?email=${email}`);
       const data = await response.json();
       setMovies(data);
     } catch (error) {
@@ -22,7 +22,7 @@ const AllMovies = () => {
     const fetchMovies = async () => {
       const token = localStorage.getItem("token"); 
       try {
-        const response = await fetch("http://localhost:5000/user-movies", {
+        const response = await fetch("https://movie-portal-server-10.vercel.app/user-movies", {
           method: "GET",
           headers: {
             "content-type": "application/json",
