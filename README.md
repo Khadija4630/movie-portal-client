@@ -3,7 +3,7 @@
 Welcome to the Movie Portal, your one-stop platform to explore, manage, and choose your favorite movies seamlessly! There is all kinds of genre ,for example horror,comedy,romance,action,adventure,thriller,sci-fi etc.
 
 ## 🌐 Live Demo
-
+https://movie-client-10.web.app/
 
 ## ✨ Features
 1. Dynamic Movie Database:
